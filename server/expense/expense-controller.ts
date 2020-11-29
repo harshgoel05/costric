@@ -25,7 +25,9 @@ async function handleAddExpense(req: Request, res: Response) {
     res.status(200).json({ success: true });
   } catch (err) {
     if (err.code && err.message) return res.status(err.code).json(err.message);
-    return res.status(500).json(SERVER_ERROR);
+    return res
+      .status(500)
+      .json({ message: SERVER_ERROR, message_details: err });
   }
 }
 async function handleDeleteExpense(req: Request, res: Response) {
@@ -35,7 +37,9 @@ async function handleDeleteExpense(req: Request, res: Response) {
     res.status(200).json({ success: true });
   } catch (err) {
     if (err.code && err.message) return res.status(err.code).json(err.message);
-    return res.status(500).json(SERVER_ERROR);
+    return res
+      .status(500)
+      .json({ message: SERVER_ERROR, message_details: err });
   }
 }
 async function handleUpdateExpense(req: Request, res: Response) {
@@ -43,11 +47,13 @@ async function handleUpdateExpense(req: Request, res: Response) {
     let expense = req.body;
     expense = expenseListSchema.cast(expense);
     let id = req.params.id;
-    await updateExpense(expense, id);
+    await deleteExpense(id);
     res.status(200).json({ success: true });
   } catch (err) {
     if (err.code && err.message) return res.status(err.code).json(err.message);
-    return res.status(500).json(SERVER_ERROR);
+    return res
+      .status(500)
+      .json({ message: SERVER_ERROR, message_details: err });
   }
 }
 
