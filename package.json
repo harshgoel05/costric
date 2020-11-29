@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "npx tsc-watch --onSuccess \"node ./build/server.js\"",
-    "tsc": "tsc",
-    "build": "npm tsc",
+    "build": "npx tsc",
     "start": "node ./build/server.js"
   },
   "description": "",
