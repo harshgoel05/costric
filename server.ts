@@ -24,7 +24,7 @@ async function createServer() {
     })
   );
 
-  app.use("/api/", expenseController());
+  app.use("/api", expenseController());
 
   app.use((req: Request, res: Response) => {
     res.status(404).json({
