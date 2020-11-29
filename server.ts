@@ -1,7 +1,6 @@
 import express, { Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import path from "path";
 import { config } from "dotenv";
 import rateLimit from "express-rate-limit";
 import expenseController from "./server/expense/expense-controller";
@@ -25,17 +24,7 @@ async function createServer() {
     })
   );
 
-  // Serving React App
-  app.use(express.static(path.join(__dirname, "..", "client")));
-  app.use((req: Request, res: Response, next: NextFunction) => {
-    if (!req.url.startsWith("/api")) {
-      res.sendFile(path.join(__dirname, "..", "client", "index.html"));
-    } else {
-      next();
-    }
-  });
-
-  app.use("/api/v1/users", expenseController());
+  app.use("/api/", expenseController());
 
   app.use((req: Request, res: Response) => {
     res.status(404).json({
