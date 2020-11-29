@@ -5,9 +5,11 @@ export const expenseListSchema = yup.object().shape({
   source: yup.string().required().trim(),
   amount: yup.number().required(),
   account: yup.string().oneOf(["paytm", "hdfc"]).required(),
-  date: yup.number().default(() => {
+  timestamp: yup.number().default(() => {
     return +new Date();
   }),
+  date: yup.number().required(),
+  comments: yup.string().trim(),
 });
 
 export const expenseIdSchema = yup.object().shape({
