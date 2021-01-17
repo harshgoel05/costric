@@ -20,6 +20,7 @@ async function handleGetExpenses(req: Request, res: Response) {
 async function handleAddExpense(req: Request, res: Response) {
   try {
     let expense = req.body;
+    console.log(expense);
     expense = expenseListSchema.cast(expense);
     await addExpense(expense);
     res.status(200).json({ success: true });

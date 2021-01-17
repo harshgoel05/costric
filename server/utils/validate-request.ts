@@ -8,6 +8,7 @@ export function validateRequest(
   schema: yup.ObjectSchema
 ) {
   return async (req: Request, res: Response, next: NextFunction) => {
+    console.log(req);
     let _location: any;
     switch (location) {
       case "query":

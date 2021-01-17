@@ -8,7 +8,9 @@ export const expenseListSchema = yup.object().shape({
   timestamp: yup.number().default(() => {
     return +new Date();
   }),
-  date: yup.number().required(),
+  date: yup.number().default(() => {
+    +new Date();
+  }),
   comments: yup.string().trim(),
 });
 
